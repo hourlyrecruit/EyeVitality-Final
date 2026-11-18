@@ -1,0 +1,90 @@
+<section class="rel">
+  <div class="aur"><i></i><i></i></div>
+  <div class="w">
+    <h1 style="max-width: 14ch; margin-bottom: 28px">Unhurried, specific, honest eye care.</h1>
+    <p class="lead" style="max-width: 60ch">
+      EyeVitality has cared for patients since 2012. Physicians, surgeons, imaging and optical teams
+      work from one record and one plan, so you never have to repeat your story.
+    </p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w split">
+    <div class="media" appReveal>
+      <img class="ph" src="images/reception.jpg" alt="Bright reception and waiting area of the clinic" />
+      <span class="chip">Our Reception</span>
+    </div>
+    <div appReveal>
+      <h2 style="margin-bottom: 22px">Our approach</h2>
+      <p>
+        We start by listening: what you’re noticing, what you do all day, what worries you. Then we
+        measure, image and examine, and explain every finding in plain language.
+      </p>
+      <p>
+        You’ll leave with a clear plan and the reasons behind it. If you don’t need treatment, we’ll
+        tell you that too.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w">
+    <div class="head" appReveal><h2>What we stand for</h2></div>
+    <div class="grid g3">
+      @for (v of values; track v.title) {
+        <div class="card" appReveal>
+          <div class="ic">{{ v.icon }}</div>
+          <h3>{{ v.title }}</h3>
+          <p>{{ v.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w split">
+    <div appReveal>
+      <h2 style="margin-bottom: 22px">The team</h2>
+      <p class="lead">
+        Specialists in general eye care, retina and children’s vision, supported by imaging
+        technicians, opticians and patient coordinators.
+      </p>
+      <a class="btn ghost" routerLink="/doctors">Meet the doctors</a>
+    </div>
+    <div class="grid g3" style="grid-template-columns: repeat(3, 1fr)">
+      @for (d of doctors; track d.name) {
+        <div appReveal>
+          <img
+            [src]="d.photo"
+            [alt]="d.name"
+            [style.object-position]="d.position"
+            style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 14px"
+            loading="lazy"
+          />
+          <h4 style="margin-top: 10px; font-size: 15px">{{ d.name }}</h4>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w">
+    <div class="head" appReveal><h2 style="max-width: 16ch">Who we care for.</h2></div>
+    <div class="grid g4">
+      @for (a of audiences; track a.title) {
+        <div class="card" appReveal>
+          <div class="ic">{{ a.icon }}</div>
+          <h3>{{ a.title }}</h3>
+          <p>{{ a.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<app-visit />
+<app-cta />

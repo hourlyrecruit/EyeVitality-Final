@@ -1,0 +1,126 @@
+<section class="rel">
+  <div class="aur"><i></i><i></i></div>
+  <div class="w split" style="align-items: start">
+    <div appReveal>
+      <h1 style="font-size: clamp(40px, 5.4vw, 76px); margin-bottom: 24px">Book a consultation.</h1>
+      <p class="lead">Fill in the form or call us, and the clinic will confirm a time with you.</p>
+      <div class="grid" style="margin-top: 28px">
+        <div class="card">
+          <h4>Our Address</h4>
+          <p>{{ clinic.address }}</p>
+          <p><a class="btn ghost" [href]="clinic.mapUrl" target="_blank" rel="noopener">Get Directions</a></p>
+        </div>
+        <div class="card">
+          <h4>Call To Book</h4>
+          <p>
+            <a [href]="clinic.telHref" style="font: 600 26px Sora, sans-serif; color: var(--cyan); text-decoration: none">{{ clinic.phone }}</a>
+          </p>
+          <p>Call us to book, reschedule or confirm appointment timings.</p>
+        </div>
+        <div class="card">
+          <h4>Clinic Timings</h4>
+          <p style="margin: 10px 0 2px; color: var(--text); font-weight: 600">Morning</p>
+          <p style="margin: 0">9:00 AM – 11:00 AM</p>
+          <p style="margin: 0">11:00 AM – 1:00 PM</p>
+          <p style="margin: 12px 0 2px; color: var(--text); font-weight: 600">Afternoon</p>
+          <p style="margin: 0">2:30 PM – 4:30 PM</p>
+          <p style="margin: 0">4:30 PM – 7:00 PM</p>
+          <p>Please call to confirm the available days and book your slot.</p>
+        </div>
+        <div class="card">
+          <h4>Email</h4>
+          <p>{{ clinic.email }}</p>
+        </div>
+      </div>
+    </div>
+
+    <form class="panel" appReveal [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="two">
+        <label>
+          Full name
+          <input formControlName="name" autocomplete="name" />
+          @if (showError('name')) { <span class="err">Please enter your name.</span> }
+        </label>
+        <label>
+          Phone
+          <input formControlName="phone" type="tel" autocomplete="tel" />
+          @if (showError('phone')) { <span class="err">Please enter a valid phone number.</span> }
+        </label>
+      </div>
+      <label>
+        Email
+        <input formControlName="email" type="email" autocomplete="email" />
+        @if (showError('email')) { <span class="err">Please enter a valid email address.</span> }
+      </label>
+      <div class="two">
+        <label>
+          Reason for visit
+          <select formControlName="service">
+            @for (s of services; track s.title) {
+              <option [value]="s.title">{{ s.title }}</option>
+            }
+          </select>
+        </label>
+        <label>
+          Preferred doctor
+          <select formControlName="doctor">
+            <option value="No preference">No preference</option>
+            @for (d of doctors; track d.name) {
+              <option [value]="d.name">{{ d.name }}</option>
+            }
+          </select>
+        </label>
+      </div>
+      <div class="two">
+        <label>
+          Preferred date
+          <input formControlName="date" type="date" />
+        </label>
+        <label>
+          Preferred time slot
+          <select formControlName="slot">
+            @for (s of slots; track s) {
+              <option [value]="s">{{ s }}</option>
+            }
+          </select>
+        </label>
+      </div>
+      <label>
+        Anything we should know?
+        <textarea formControlName="message" rows="4"></textarea>
+      </label>
+      <button class="btn" type="submit">Request Appointment</button>
+      <p class="err" style="color: var(--muted)" aria-live="polite">
+        {{ status() || 'We’ll confirm your time by phone. For urgent eye problems, please call ' + clinic.phone + '.' }}
+      </p>
+    </form>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w">
+    <div class="head" appReveal><h2>Before you come in</h2></div>
+    <div class="grid g3">
+      @for (b of before; track b.title) {
+        <div class="card" appReveal>
+          <h3>{{ b.title }}</h3>
+          <p>{{ b.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w split">
+    <div appReveal><h2>Common questions</h2></div>
+    <div appReveal>
+      @for (f of faqs; track f.question) {
+        <details>
+          <summary>{{ f.question }}</summary>
+          <p>{{ f.answer }}</p>
+        </details>
+      }
+    </div>
+  </div>
+</section>

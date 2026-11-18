@@ -1,0 +1,66 @@
+<section class="rel">
+  <div class="aur"><i></i><i></i></div>
+  <div class="w">
+    <h1 style="max-width: 12ch; margin-bottom: 28px">Complete care for your eyes.</h1>
+    <p class="lead">From a first check-up to surgery, one team looks after you.</p>
+  </div>
+</section>
+
+@for (s of services; track s.title; let even = $even) {
+  <section [class.alt]="even">
+    <div class="w split" [class.rev]="!even">
+      <div class="info" appReveal>
+        <div class="ic">{{ s.icon }}</div>
+        <h2 style="margin-bottom: 16px">{{ s.title }}</h2>
+        <p class="lead">{{ s.summary }}</p>
+        <div class="facts">
+          <div class="fact">
+            <span class="ic2">✓</span>
+            <div>
+              <h4>What’s Included</h4>
+              <p>{{ s.included }}</p>
+            </div>
+          </div>
+          <div class="fact">
+            <span class="ic2">☺</span>
+            <div>
+              <h4>Who It’s For</h4>
+              <p>{{ s.audience }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="btns2">
+          <a class="btn" routerLink="/contact">Book This Service</a>
+          <a class="btn ghost" [href]="clinic.telHref">Call Now</a>
+        </div>
+      </div>
+      <div class="media" appReveal>
+        <img class="ph" [src]="s.image" [alt]="s.imageAlt" loading="lazy" />
+        <span class="chip">{{ s.title }}</span>
+      </div>
+    </div>
+  </section>
+}
+
+<section>
+  <div class="w split">
+    <div appReveal>
+      <h2 style="margin-bottom: 22px">Questions about our services.</h2>
+      <p class="lead">
+        Not sure which service you need?
+        <a [href]="clinic.telHref" style="color: var(--cyan)">Call {{ clinic.phone }}</a> and we’ll
+        guide you.
+      </p>
+    </div>
+    <div appReveal>
+      @for (f of faqs; track f.question) {
+        <details>
+          <summary>{{ f.question }}</summary>
+          <p>{{ f.answer }}</p>
+        </details>
+      }
+    </div>
+  </div>
+</section>
+
+<app-cta />

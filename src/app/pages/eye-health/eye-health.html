@@ -1,0 +1,213 @@
+<section class="rel">
+  <div class="aur"><i></i><i></i></div>
+  <div class="w">
+    <h1 style="max-width: 13ch; margin-bottom: 28px">Know your eyes. Protect your sight.</h1>
+    <p class="lead">
+      Plain-language guidance on how the eye works, the conditions we see most, and what you can do
+      every day to look after your vision.
+    </p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w">
+    <div class="head" appReveal>
+      <h2 style="max-width: 16ch">The parts of the eye.</h2>
+      <p style="max-width: 44ch; margin: 0">Each layer has one job. Together they turn light into the picture you see.</p>
+    </div>
+    <div class="grid g3">
+      @for (p of parts; track p.title) {
+        <article class="card" appReveal>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.text }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w split">
+    <div appReveal>
+      <div class="vwrap">
+        <video
+          #hv
+          controls
+          playsinline
+          preload="metadata"
+          poster="images/video-poster.jpg"
+          src="video/how-you-see.mp4"
+          aria-label="Video: how the eye turns light into what you see"
+          (timeupdate)="onTime()"
+          (seeked)="onTime()"
+        ></video>
+      </div>
+    </div>
+    <div appReveal>
+      <h2 style="margin-bottom: 18px">How you see.</h2>
+      <p class="lead">
+        Press play to watch light travel through the eye to the brain in about 30 seconds. Or tap a
+        step to jump to that part.
+      </p>
+      <div style="margin-top: 12px">
+        @for (s of steps; track s.title; let i = $index) {
+          <button
+            class="seek"
+            type="button"
+            [attr.aria-current]="activeStep() === i ? 'true' : null"
+            (click)="seek(s)"
+          >
+            <b>{{ i + 1 }}</b>
+            <span>
+              <h4>{{ s.title }}</h4>
+              <p>{{ s.text }}</p>
+            </span>
+            <em>Watch</em>
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w">
+    <div class="head" appReveal><h2 style="max-width: 16ch">Eye care at every age.</h2></div>
+    <div class="grid g4">
+      @for (a of ages; track a.title) {
+        <div class="card" appReveal>
+          <h3>{{ a.title }}</h3>
+          <p>{{ a.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w">
+    <div class="head" appReveal>
+      <h2 style="max-width: 16ch">Common eye conditions.</h2>
+      <p style="max-width: 44ch; margin: 0">What they are, what you might notice and how they’re treated.</p>
+    </div>
+    <div class="grid g3">
+      @for (c of conditions; track c.name) {
+        <article class="card" appReveal>
+          <h3>{{ c.name }}</h3>
+          <p>{{ c.summary }}</p>
+          <p class="sim"><b>In simple words:</b> {{ c.simple }}</p>
+          <p><b style="color: var(--text)">You might notice:</b> {{ c.notice }}</p>
+          <p><b style="color: var(--text)">Care:</b> {{ c.care }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w">
+    <div class="alert" appReveal>
+      <h3>Seek care immediately if you have:</h3>
+      <p>
+        Sudden loss or dimming of vision, a shower of new floaters or flashes of light, a dark
+        curtain across your vision, severe eye pain with nausea, a chemical splash or any eye
+        injury.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w">
+    <div class="head" appReveal>
+      <h2 style="max-width: 18ch">Everyday habits that protect your sight.</h2>
+      <p style="max-width: 44ch; margin: 0">Small, simple habits. None of them replace regular eye exams, but they all help.</p>
+    </div>
+    <div class="grid g3">
+      @for (t of tips; track t.title; let i = $index) {
+        <article class="card" appReveal style="padding: 0; overflow: hidden">
+          <app-habit-icon [index]="i" />
+          <div style="padding: 22px 26px 26px">
+            <h3>{{ t.title }}</h3>
+            <p>{{ t.text }}</p>
+          </div>
+        </article>
+      }
+    </div>
+    <div class="card" appReveal style="margin-top: clamp(32px, 4vw, 56px); text-align: center">
+      <h3 style="font-size: clamp(24px, 2.6vw, 34px)">The best habit: a regular eye exam.</h3>
+      <p class="lead" style="margin: 14px auto 22px">
+        Many eye conditions have no early symptoms. A quick check can find them before they affect
+        your sight.
+      </p>
+      <a class="btn" routerLink="/contact">Book a consultation</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w">
+    <div class="head" appReveal>
+      <h2 style="max-width: 18ch">How often should you have an eye exam?</h2>
+      <p style="max-width: 44ch; margin: 0">General guidance. Your doctor may advise a different schedule.</p>
+    </div>
+    <div class="grid g2">
+      @for (f of examFrequency; track f.title) {
+        <div class="card" appReveal>
+          <h4>{{ f.title }}</h4>
+          <p>{{ f.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w split">
+    <div appReveal>
+      <h2 style="margin-bottom: 22px">A comfortable screen setup.</h2>
+      <p class="lead">Long hours on a laptop or phone are a common cause of tired, dry eyes.</p>
+    </div>
+    <div>
+      @for (s of screenSetup; track s.title; let i = $index) {
+        <div class="rowl" appReveal>
+          <b>{{ i + 1 }}</b>
+          <div>
+            <h4>{{ s.title }}</h4>
+            <p>{{ s.text }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w">
+    <div class="head" appReveal><h2 style="max-width: 18ch">Myths and facts.</h2></div>
+    <div class="grid g2">
+      @for (m of myths; track m.title) {
+        <div class="card" appReveal>
+          <h4>{{ m.title }}</h4>
+          <p>{{ m.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w">
+    <div class="head" appReveal><h2>How we look inside your eye</h2></div>
+    <div class="grid g3">
+      @for (t of inspection; track t.title) {
+        <div class="card" appReveal>
+          <h3>{{ t.title }}</h3>
+          <p>{{ t.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<app-cta />

@@ -1,0 +1,38 @@
+<div class="scene" #sceneEl [style.height.vh]="heightVh()">
+  <div class="pin" #pinEl>
+    <div class="stage">
+      <div class="rig" #rigEl>
+        <div class="glow" #glowEl></div>
+        <video
+          class="vid"
+          #vidEl
+          [src]="videoSrc()"
+          muted
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        ></video>
+      </div>
+      <div class="vig" #vigEl></div>
+    </div>
+    <div class="scrim"></div>
+    <div class="hint" #hintEl>
+      {{ fallback() ? 'Scrubbing isn’t supported here, so the clip is playing instead.' : hintText() }}
+    </div>
+    <div class="cap">
+      @for (stage of current(); track stage.title) {
+        <div class="cap-in">
+          <span class="badge">Trusted eye care since 2012</span>
+          <div class="t" role="heading" aria-level="2">{{ stage.title }}</div>
+          <p>{{ stage.text }}</p>
+          @if (stage.showCta) {
+            <div class="btns">
+              <a class="btn" routerLink="/contact">Book a consultation</a>
+            </div>
+          }
+        </div>
+      }
+    </div>
+    <div class="prog" #progEl></div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<section class="rel">
+  <div class="aur"><i></i><i></i></div>
+  <div class="w">
+    <h1 style="max-width: 12ch; margin-bottom: 28px">Meet our specialists.</h1>
+    <p class="lead">Experienced ophthalmologists who explain what they see and why they recommend it.</p>
+  </div>
+</section>
+
+@for (d of doctors; track d.name; let even = $even) {
+  <section [class.alt]="even">
+    <div class="w split" [class.rev]="!even">
+      <div class="media portrait" appReveal>
+        <img class="ph" [src]="d.photo" [alt]="d.name" [style.object-position]="d.position" />
+        <span class="chip">{{ d.role }}</span>
+      </div>
+      <div class="info" appReveal>
+        <h2>{{ d.name }}</h2>
+        <span class="role">{{ d.role }}</span>
+        <p class="lead">{{ d.bio }}</p>
+        <div class="facts">
+          <div class="fact">
+            <span class="ic2">🎓</span>
+            <div>
+              <h4>Qualifications</h4>
+              <p>{{ d.qualifications }}</p>
+            </div>
+          </div>
+          <div class="fact">
+            <span class="ic2">★</span>
+            <div>
+              <h4>Experience</h4>
+              <p>{{ d.experience }}</p>
+            </div>
+          </div>
+        </div>
+        <h4 style="margin: 0 0 10px">Consult For</h4>
+        <p>
+          @for (f of d.focus; track f) {
+            <span class="tag">{{ f }}</span>
+          }
+        </p>
+        <div class="btns2" style="margin-top: 12px">
+          <a class="btn" routerLink="/contact">Book With {{ shortName(d.name) }}</a>
+          <a class="btn ghost" [href]="clinic.telHref">Call Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
+<section>
+  <div class="w">
+    <div class="head" appReveal><h2 style="max-width: 16ch">One team, one plan.</h2></div>
+    <div class="grid g3">
+      @for (t of teamPoints; track t.title) {
+        <div class="card" appReveal>
+          <h3>{{ t.title }}</h3>
+          <p>{{ t.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<app-visit />
+<app-cta />

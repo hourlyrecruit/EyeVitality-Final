@@ -1,0 +1,189 @@
+<h1 class="sr">EyeVitality: your eyes, our priority</h1>
+<app-hero-scrub [stages]="heroStages" videoSrc="video/hero-eye.mp4" />
+
+<section style="padding: 44px 0">
+  <div class="w">
+    <div class="grid g4" appReveal>
+      @for (s of stats; track s.label) {
+        <div class="stat"><b>{{ s.value }}</b><span>{{ s.label }}</span></div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="rel">
+  <div class="aur"><i></i><i></i></div>
+  <div class="w">
+    <div class="split">
+      <div appReveal>
+        <h2 style="margin-bottom: 22px">A clinic dedicated to clearer vision.</h2>
+        <p class="lead">
+          Our eye care service provides comprehensive, personalized solutions to protect and improve
+          your vision. With experienced specialists and advanced technology, we offer thorough
+          examinations, precise diagnoses and treatment plans built around you.
+        </p>
+        <a class="btn ghost" routerLink="/about">About the clinic</a>
+      </div>
+      <div class="grid">
+        @for (f of features; track f.title) {
+          <div class="card" appReveal style="display: flex; gap: 16px">
+            <div class="ic" style="flex: none">{{ f.icon }}</div>
+            <div>
+              <h4>{{ f.title }}</h4>
+              <p style="margin: 6px 0 0">{{ f.text }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w">
+    <div class="head" appReveal>
+      <h2 style="max-width: 16ch">Complete care for your eyes.</h2>
+      <a class="btn ghost" routerLink="/services">All services</a>
+    </div>
+    <div class="grid g3">
+      @for (s of services; track s.title) {
+        <article class="card" appReveal>
+          <div class="ic">{{ s.icon }}</div>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.summary }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w">
+    <div class="split">
+      <div class="media" appReveal>
+        <img class="ph" src="images/retina-scan-exam.jpg" alt="A patient having a retina scan while a doctor reviews the images" loading="lazy" />
+        <span class="chip">Retinal Imaging</span>
+      </div>
+      <div appReveal>
+        <h2 style="margin-bottom: 22px">Imaging you can actually see.</h2>
+        <p class="lead">
+          We show you your own scans on screen and walk through what they mean, so you leave knowing
+          what we found and what happens next.
+        </p>
+        @for (r of imaging; track r.title) {
+          <div class="rowl">
+            <b>{{ r.tag }}</b>
+            <div>
+              <h4>{{ r.title }}</h4>
+              <p>{{ r.text }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w">
+    <div class="head" appReveal>
+      <h2 style="max-width: 18ch">What your visit looks like.</h2>
+      <p style="max-width: 44ch; margin: 0">Most visits take one to two hours, including tests and time with your doctor.</p>
+    </div>
+    <div class="grid g4">
+      @for (s of visitSteps; track s.n) {
+        <div class="card" appReveal>
+          <b style="font: 600 34px Sora; color: var(--cyan)">{{ s.n }}</b>
+          <h4 style="margin-top: 8px">{{ s.title }}</h4>
+          <p>{{ s.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w">
+    <div class="head" appReveal>
+      <h2 style="max-width: 16ch">Understanding common eye conditions.</h2>
+      <a class="btn ghost" routerLink="/eye-health">Learn more</a>
+    </div>
+    <div class="grid g3">
+      @for (c of conditions; track c.name) {
+        <article class="card" appReveal>
+          <div class="ic">{{ c.icon }}</div>
+          <h3>{{ c.name }}</h3>
+          <p>{{ c.summary }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w">
+    <div class="head" appReveal>
+      <h2 style="max-width: 14ch">Meet our specialists.</h2>
+      <a class="btn ghost" routerLink="/doctors">Full profiles</a>
+    </div>
+    <div class="grid g3">
+      @for (d of doctors; track d.name) {
+        <article class="doc card" appReveal>
+          <img [src]="d.photo" [alt]="d.name" [style.object-position]="d.position" loading="lazy" />
+          <h3>{{ d.name }}</h3>
+          <p class="role">{{ d.role }}</p>
+          <p>{{ d.qualifications }}</p>
+          <p>{{ d.experience }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w">
+    <div class="split">
+      <div appReveal>
+        <h2 style="margin-bottom: 22px">Six habits for healthier eyes.</h2>
+        <p class="lead">Small daily choices protect your sight for decades.</p>
+        <a class="btn ghost" routerLink="/eye-health">More eye-health advice</a>
+      </div>
+      <div>
+        @for (t of tips; track t.title; let i = $index) {
+          <div class="rowl" appReveal>
+            <b>{{ i + 1 }}</b>
+            <div>
+              <h4>{{ t.title }}</h4>
+              <p>{{ t.text }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="w">
+    <div class="split">
+      <div appReveal>
+        <h2 style="margin-bottom: 22px">Questions we hear often.</h2>
+        <p class="lead">
+          Can’t find yours? <a routerLink="/contact" style="color: var(--cyan)">Ask the clinic</a>.
+        </p>
+      </div>
+      <div appReveal>
+        @for (f of faqs; track f.question) {
+          <details>
+            <summary>{{ f.question }}</summary>
+            <p>{{ f.answer }}</p>
+          </details>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-gallery />
+<app-visit />
+<app-cta />

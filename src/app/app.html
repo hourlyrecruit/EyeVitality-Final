@@ -1,0 +1,74 @@
+<header>
+  <a class="brand" routerLink="/"><span class="mark"></span>EyeVitality</a>
+
+  <nav [class.open]="menuOpen()" aria-label="Main" (click)="menuOpen.set(false)">
+    @for (item of nav; track item.link) {
+      <a
+        [routerLink]="item.link"
+        routerLinkActive
+        ariaCurrentWhenActive="page"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >{{ item.label }}</a
+      >
+    }
+  </nav>
+
+  <button
+    class="theme"
+    type="button"
+    (click)="theme.toggle()"
+    [attr.aria-label]="theme.label()"
+    [title]="theme.label()"
+  >
+    <svg class="i-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /></svg>
+    <svg class="i-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5" /><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" /></svg>
+  </button>
+
+  <button
+    class="burger"
+    type="button"
+    aria-label="Menu"
+    [attr.aria-expanded]="menuOpen()"
+    (click)="toggleMenu()"
+  >
+    ☰
+  </button>
+</header>
+
+<main id="main" class="page" tabindex="-1">
+  <router-outlet />
+</main>
+
+<footer>
+  <div class="w">
+    <div class="fg">
+      <div>
+        <a class="brand" routerLink="/"><span class="mark"></span>EyeVitality</a>
+        <p style="margin: 14px 0 16px">Ophthalmic care since {{ clinic.founded }}. Precision optics, human care.</p>
+        <a class="btn" [href]="clinic.telHref">Call {{ clinic.phone }}</a>
+      </div>
+      <div>
+        <h4>Visit Us</h4>
+        <p>{{ clinic.address }}</p>
+        <a [href]="clinic.mapUrl" target="_blank" rel="noopener">Get Directions →</a>
+      </div>
+      <div>
+        <h4>Contact And Timings</h4>
+        <p><a [href]="clinic.telHref">{{ clinic.phone }}</a></p>
+        <p>{{ clinic.email }}</p>
+        <p><b style="color: var(--text)">Morning:</b> 9:00 AM – 1:00 PM</p>
+        <p><b style="color: var(--text)">Afternoon:</b> 2:30 PM – 7:00 PM</p>
+        <a routerLink="/contact">Book A Consultation</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>© 2026 EyeVitality. All rights reserved.</p>
+      <p>Information on this site is general and doesn’t replace an examination by an eye doctor.</p>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" [href]="clinic.telHref" aria-label="Call EyeVitality">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" /></svg>
+  <span>Call Now</span>
+</a>
